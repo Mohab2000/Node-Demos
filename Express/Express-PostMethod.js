@@ -1,7 +1,7 @@
-var express = require('express');
+var express = require("express");
 var app = express();
 
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 // Create application/x-www-form-urlencoded parser
 //to ensure all body is parsed
@@ -24,32 +24,29 @@ Defaults to true, but using the default has been deprecated.
 
 //app.use(express.static('public'));
 
-app.get('/home', function(req, res) {
-    res.sendFile(__dirname + "/" + "Express-PostMethod.html");
-})
+app.get("/home", function (req, res) {
+  res.sendFile(__dirname + "/" + "Express-PostMethod.html");
+});
 
-app.post('/process_post', urlencodedParser, function(req, res) {
-
-    // Prepare output in JSON format
-    /*response = {
+app.post("/process_post", urlencodedParser, function (req, res) {
+  // Prepare output in JSON format
+  /*response = {  
         first_name:req.body.first_name,
         last_name:req.body.last_name
     };*/
 
-    //console.log(response);
-    //res.end(JSON.stringify(response));
-    res.end("<b>Welcome</b>: " + req.body.first_name + " " + req.body.last_name);
-})
+  //console.log(response);
+  //res.end(JSON.stringify(response));
+  res.end("<b>Welcome</b>: " + req.body.first_name + " " + req.body.last_name);
+});
 
-var server = app.listen(8080, function() {
+var server = app.listen(8080, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
-        var host = server.address().address
-        var port = server.address().port
-
-        console.log("Example app listening at http://%s:%s", host, port)
-
-    })
-    /*
+  console.log("Example app listening at http://%s:%s", host, port);
+});
+/*
     you should install body-parser module to run this demo
      -- npm install body-parser 
     run the server, and try it
