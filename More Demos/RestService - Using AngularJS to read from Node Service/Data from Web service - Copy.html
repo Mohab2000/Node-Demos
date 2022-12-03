@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+ <div ng-app="myApp" ng-controller="customersCtrl">
+
+	
+	
+	
+	<input type="button" id="btn" value="get User" ng-click="getuser()">
+	
+	
+	  <div>
+		<b>Name:</b>{{user.name}}
+	  </div>
+	  
+	   <div>
+		<b> Profession:</b>{{user.profession}}
+	  </div>
+</div>
+
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('customersCtrl', function($scope, $http) {
+		$scope.getuser=function(){
+			$http.get("http://localhost:8081/listusers")
+				.then(function (response) {$scope.user=response.data.user1; 
+					//$scope.names = response.data.records;
+			});
+			};
+	});
+</script>
+
+</body>
+</html>

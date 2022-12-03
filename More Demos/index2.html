@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title></title>
+		<script src="/socket.io/socket.io.js"></script>
+
+
+
+	</head>
+	<body>
+		<form id="question">
+			 <textarea rows="4" cols="50" id="txt"></textarea> 
+			<input type="submit" name="" value="enter"/>
+             
+		
+		</form>
+		
+		<script>
+			var socket = io.connect('http://localhost:3000');
+			//listen to message event
+			socket.on("message",function(data){
+				alert(data.hello);
+			});
+			//
+			document.querySelector("#question").onsubmit=function(event){
+			var msg=document.querySelector("#txt").value;
+			socket.emit("message",msg);
+			}
+		</script>
+	</body>
+</html>
